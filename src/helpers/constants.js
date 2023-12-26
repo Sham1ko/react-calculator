@@ -4,4 +4,5 @@ export const ACTIONS = {
     CLEAR: 'clear',
     DELETE_DIGIT: 'delete-digit',
     EVALUATE: 'evaluate',
+    CHANGE_SIGN: 'change-sign',
 }
