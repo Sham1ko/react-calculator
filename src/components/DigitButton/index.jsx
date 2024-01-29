@@ -11,9 +11,4 @@ const DigitButton = ({ digit, dispatch }) => {
   );
 };
 
-DigitButton.propTypes = {
-  digit: PropTypes.number.isRequired,
-  dispatch: PropTypes.func,
-}
-
 export default DigitButton;

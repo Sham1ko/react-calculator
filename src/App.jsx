@@ -141,7 +141,6 @@ function App() {
 
   return (
     <>
-      {/* <ThemeButton /> */}
       <div className="container mx-auto h-screen">
         <Display currentOperand={currentOperand} previousOperand={previousOperand} operation={operation} />
         <Buttons dispatch={dispatch} />
