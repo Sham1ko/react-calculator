@@ -5,8 +5,8 @@ import { ACTIONS } from '../../helpers/constants';
 
 function Buttons({ dispatch }) {
   return (
-    <div className="flex flex-col justify-between w-1/2 mx-auto">
-      <div className="grid grid-cols-4 ">
+    <div className="flex flex-col justify-between w-full md:w-1/2 mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 ">
         <button className="bg-blue-500 text-white font-semibold rounded-lg p-4 m-1 hover:bg-blue-600 transition-all text-4xl h-24" onClick={() => dispatch({ type: ACTIONS.CLEAR })}>
           AC
         </button>
