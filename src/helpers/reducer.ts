@@ -112,7 +112,7 @@ export function reducer(state, { type, payload }) {
                     currentOperand: 0,
                 }
             }
-            if (state.currentOperand == null) return state
+            if (state.currentOperand == null || 0) return state
             if (state.currentOperand.length === 1) {
                 return { ...state, currentOperand: 0 }
             }
