@@ -1,19 +1,38 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import DigitButton from "../DigitButton";
 import OperationButton from "../OperationButton";
-import { ACTIONS } from '../../helpers/constants';
+import { ACTIONS } from "../../helpers/constants";
+import { Button } from "../ui/button";
 
-function Buttons({ dispatch }) {
+type ButtonsType = {
+  dispatch: React.Dispatch<{ type: string; payload: any }>;
+};
+function Buttons({ dispatch }: ButtonsType) {
   return (
-    <div className="flex flex-col justify-between mx-auto mx-10">
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-2 mb-2">
-        <button className="bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24" onClick={() => dispatch({ type: ACTIONS.CLEAR })}>
+    <div className="flex flex-col justify-between m-10">
+      <div className="grid grid-cols-4 gap-2 mb-2">
+        <Button
+          // className="bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24"
+          onClick={() => dispatch({ type: ACTIONS.CLEAR, payload: undefined })}
+        >
           AC
-        </button>
-        <button className='bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24' onClick={() => dispatch({ type: ACTIONS.CHANGE_SIGN })}>±</button>
-        <button className='bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24' onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>
+        </Button>
+        <Button
+          // className="bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24"
+          onClick={() =>
+            dispatch({ type: ACTIONS.CHANGE_SIGN, payload: undefined })
+          }
+        >
+          ±
+        </Button>
+        <Button
+          // className="bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24"
+          onClick={() =>
+            dispatch({ type: ACTIONS.DELETE_DIGIT, payload: undefined })
+          }
+        >
           DEL
-        </button>
+        </Button>
         <OperationButton operation="÷" dispatch={dispatch} />
       </div>
       <div className="grid grid-cols-4 gap-2 mb-2">
@@ -35,9 +54,16 @@ function Buttons({ dispatch }) {
         <OperationButton operation={"+"} dispatch={dispatch} />
       </div>
       <div className="grid grid-cols-4 gap-2 mb-2">
-        <DigitButton digit={0} dispatch={dispatch} />
-        <DigitButton digit={'.'} dispatch={dispatch} />
-        <button className='bg-orange-400 text-black rounded-none  font-semibold  p-4 m-1 hover:bg-blue-600 transition-all text-4xl  h-24' onClick={() => dispatch({ type: ACTIONS.EVALUATE })} >=</button>
+        <DigitButton digit={0} dispatch={dispatch} isZero />
+        <DigitButton digit={"."} dispatch={dispatch} />
+        <Button
+          variant="destructive"
+          onClick={() =>
+            dispatch({ type: ACTIONS.EVALUATE, payload: undefined })
+          }
+        >
+          =
+        </Button>
       </div>
     </div>
   );
@@ -45,6 +71,6 @@ function Buttons({ dispatch }) {
 
 Buttons.propTypes = {
   dispatch: PropTypes.func,
-}
+};
 
 export default Buttons;
