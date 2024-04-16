@@ -13,8 +13,8 @@ function formatOperand(operand) {
 
 function Display({ currentOperand, previousOperand, operation }) {
   return (
-    <div className="text-right flex flex-col border-b-2 h-72 py-10 justify-around">
-      <div className="text-8xl opacity-80"> {formatOperand(previousOperand)}  <span className='text-red-500'>{operation}</span> {formatOperand(currentOperand)}</div>
+    <div className="text-right flex flex-col m-10 rounded-md border border-[#CBD5E1] h-34 p-10 justify-around">
+      <div className="text-8xl "> {formatOperand(previousOperand)}  <span className='text-red-500'>{operation}</span> {formatOperand(currentOperand)}</div>
     </div>)
 }
 

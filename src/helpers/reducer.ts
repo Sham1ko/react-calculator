@@ -1,20 +1,48 @@
-/* eslint-disable no-unreachable */
-import { useReducer } from "react";
-import "./App.css";
-import Display from "./components/Display";
-import Buttons from "./components/Buttons";
+import { ACTIONS } from "./constants";
 
+type StateType = {
+  currentOperand: string;
+  previousOperand: string;
+  operation: string | null;
+  overwrite: boolean;
+};
 
-const ACTIONS = {
-  ADD_DIGIT: 'add-digit',
-  CHOOSE_OPERATOR: 'choose-operator',
-  CLEAR: 'clear',
-  DELETE_DIGIT: 'delete-digit',
-  EVALUATE: 'evaluate',
-  CHANGE_SIGN: 'change-sign',
+export const initialState = {
+  currentOperand: "0",
+  previousOperand: null,
+  operation: null,
+  overwrite: true,
+};
+
+function evaluate({ currentOperand, previousOperand, operation }: StateType) {
+  const prev = parseFloat(previousOperand);
+  const current = parseFloat(currentOperand);
+  if (isNaN(prev) || isNaN(current)) return "";
+  let computation = 0;
+  switch (operation) {
+    case "+":
+      computation = prev + current;
+      break;
+    case "-":
+      computation = prev - current;
+      break;
+    case "x":
+      computation = prev * current;
+      break;
+    case "÷":
+      computation = prev / current;
+      break;
+  }
+
+  return computation.toString();
 }
 
-function reducer(state, { type, payload }) {
+type ActionType = {
+  type: string;
+  payload: any;
+};
+
+export function reducer(state: StateType, { type, payload }: ActionType) {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
       if (state.overwrite) {
@@ -22,29 +50,29 @@ function reducer(state, { type, payload }) {
           ...state,
           currentOperand: payload.digit,
           overwrite: false,
-        }
+        };
       }
       if (payload.digit === "0" && state.currentOperand === "0") {
-        return state
+        return state;
       }
       if (payload.digit === "." && state.currentOperand.includes(".")) {
-        return state
+        return state;
       }
 
       return {
         ...state,
         currentOperand: `${state.currentOperand || ""}${payload.digit}`,
-      }
-    case ACTIONS.CHOOSE_OPERATION:
+      };
+    case ACTIONS.CHOOSE_OPERATOR:
       if (state.currentOperand == null && state.previousOperand == null) {
-        return state
+        return state;
       }
 
       if (state.currentOperand == null) {
         return {
           ...state,
           operation: payload.operation,
-        }
+        };
       }
 
       if (state.previousOperand == null) {
@@ -53,7 +81,7 @@ function reducer(state, { type, payload }) {
           operation: payload.operation,
           previousOperand: state.currentOperand,
           currentOperand: null,
-        }
+        };
       }
 
       return {
@@ -61,7 +89,7 @@ function reducer(state, { type, payload }) {
         previousOperand: evaluate(state),
         operation: payload.operation,
         currentOperand: null,
-      }
+      };
 
     case ACTIONS.CHANGE_SIGN:
       if (state.currentOperand != null) {
@@ -73,31 +101,36 @@ function reducer(state, { type, payload }) {
       }
       return state;
     case ACTIONS.CLEAR:
-      return {}
+      return {
+        currentOperand: "0",
+        previousOperand: null,
+        operation: null,
+        overwrite: true,
+      };
     case ACTIONS.DELETE_DIGIT:
       if (state.overwrite) {
         return {
           ...state,
           overwrite: false,
           currentOperand: 0,
-        }
+        };
       }
-      if (state.currentOperand == null) return state
+      if (state.currentOperand == null || 0) return state;
       if (state.currentOperand.length === 1) {
-        return { ...state, currentOperand: 0 }
+        return { ...state, currentOperand: 0 };
       }
 
       return {
         ...state,
         currentOperand: state.currentOperand.slice(0, -1),
-      }
+      };
     case ACTIONS.EVALUATE:
       if (
         state.operation == null ||
         state.currentOperand == null ||
         state.previousOperand == null
       ) {
-        return state
+        return state;
       }
 
       return {
@@ -106,48 +139,6 @@ function reducer(state, { type, payload }) {
         previousOperand: null,
         operation: null,
         currentOperand: evaluate(state),
-      }
+      };
   }
 }
-
-function evaluate({ currentOperand, previousOperand, operation }) {
-  const prev = parseFloat(previousOperand)
-  const current = parseFloat(currentOperand)
-  if (isNaN(prev) || isNaN(current)) return ""
-  let computation = ""
-  switch (operation) {
-    case "+":
-      computation = prev + current
-      break
-    case "-":
-      computation = prev - current
-      break
-    case "x":
-      computation = prev * current
-      break
-    case "÷":
-      computation = prev / current
-      break
-  }
-
-  return computation.toString()
-}
-
-
-
-
-function App() {
-  const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(reducer, {})
-
-  return (
-    <>
-      <div className="container mx-auto h-screen">
-        <Display currentOperand={currentOperand} previousOperand={previousOperand} operation={operation} />
-        <Buttons dispatch={dispatch} />
-      </div>
-    </>
-
-  );
-}
-
-export default App;
