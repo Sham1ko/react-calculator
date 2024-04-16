@@ -26,7 +26,6 @@ function Buttons({ dispatch }: ButtonsType) {
           ±
         </Button>
         <Button
-          // className="bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24"
           onClick={() =>
             dispatch({ type: ACTIONS.DELETE_DIGIT, payload: undefined })
           }
