@@ -42,7 +42,7 @@ type ActionType = {
   payload: any;
 };
 
-export function reducer(state: StateType, { type, payload }: ActionType) {
+export function reducer(state: StateType, { type, payload }: ActionType): any {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
       if (state.overwrite) {
