@@ -35,3 +35,7 @@ This command will create an optimized production build of your application using
 ## Usage
 
 After building the project, you can serve the optimized build using a static file server or deploy it to a hosting service of your choice.
+
+## Demo
+
+Check out the live demo of this project [here](https://react-calculator-sham1ko.vercel.app/).
