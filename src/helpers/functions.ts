@@ -17,8 +17,7 @@ function evaluate({ currentOperand, previousOperand, operation }: StateType) {
       computation = prev / current;
       break;
   }
-
-  return computation.toString();
+  return +computation.toFixed(8).toString();
 }
 
 export { evaluate };

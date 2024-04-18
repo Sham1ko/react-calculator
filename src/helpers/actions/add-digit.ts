@@ -7,6 +7,7 @@ export function addDigit(state: StateType, payload: { digit: string }) {
     };
   }
   if (payload.digit === "0" && state.currentOperand === "0") {
+    console.log(state);
     return state;
   }
   if (payload.digit === "." && state.currentOperand.includes(".")) {
