@@ -12,13 +12,11 @@ function Buttons({ dispatch }: ButtonsType) {
     <div className="flex flex-col justify-between m-10">
       <div className="grid grid-cols-4 gap-2 mb-2">
         <Button
-          // className="bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24"
           onClick={() => dispatch({ type: ACTIONS.CLEAR, payload: undefined })}
         >
           AC
         </Button>
         <Button
-          // className="bg-blue-500 text-white font-semibold rounded-lg p-4 hover:bg-blue-600 transition-all text-4xl h-24"
           onClick={() =>
             dispatch({ type: ACTIONS.CHANGE_SIGN, payload: undefined })
           }
