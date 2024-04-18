@@ -1,3 +1,5 @@
+import { StateType } from "../types";
+
 export function deleteDigit(state: StateType) {
   if (state.overwrite) {
     return {

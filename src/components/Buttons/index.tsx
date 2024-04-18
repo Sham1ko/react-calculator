@@ -5,7 +5,15 @@ import { ACTIONS } from "../../helpers/constants";
 import { Button } from "../ui/button";
 
 type ButtonsType = {
-  dispatch: React.Dispatch<{ type: string; payload: any }>;
+  dispatch: React.Dispatch<{
+    type: string;
+    payload:
+      | {
+          operation?: string | undefined;
+          digit?: string | undefined;
+        }
+      | undefined;
+  }>;
 };
 function Buttons({ dispatch }: ButtonsType) {
   return (

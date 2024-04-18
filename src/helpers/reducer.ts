@@ -7,6 +7,7 @@ import {
 } from "./actions";
 import { ACTIONS } from "./constants";
 import { evaluate } from "./functions";
+import { StateType } from "./types";
 
 export const initialState = {
   currentOperand: "0",
@@ -17,7 +18,12 @@ export const initialState = {
 
 type ActionType = {
   type: string;
-  payload: any;
+  payload:
+    | {
+        operation?: string | undefined;
+        digit?: string | undefined;
+      }
+    | undefined;
 };
 
 export function reducer(state: StateType, { type, payload }: ActionType): any {
@@ -32,14 +38,14 @@ export function reducer(state: StateType, { type, payload }: ActionType): any {
       if (state.currentOperand == null) {
         return {
           ...state,
-          operation: payload.operation,
+          operation: payload?.operation,
         };
       }
 
       if (state.previousOperand == null) {
         return {
           ...state,
-          operation: payload.operation,
+          operation: payload?.operation,
           previousOperand: state.currentOperand,
           currentOperand: null,
         };
@@ -48,7 +54,7 @@ export function reducer(state: StateType, { type, payload }: ActionType): any {
       return {
         ...state,
         previousOperand: evaluate(state),
-        operation: payload.operation,
+        operation: payload?.operation,
         currentOperand: null,
       };
 

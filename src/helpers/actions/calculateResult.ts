@@ -1,4 +1,5 @@
 import { evaluate } from "../functions";
+import { StateType } from "../types";
 
 export function calculateResult(state: StateType) {
   if (

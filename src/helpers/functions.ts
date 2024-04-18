@@ -1,3 +1,5 @@
+import { StateType } from "./types";
+
 function evaluate({ currentOperand, previousOperand, operation }: StateType) {
   const prev = parseFloat(previousOperand);
   const current = parseFloat(currentOperand);
