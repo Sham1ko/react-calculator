@@ -31,11 +31,14 @@ export function reducer(state: StateType, { type, payload }: ActionType): any {
     case ACTIONS.ADD_DIGIT:
       return addDigit(state, payload);
     case ACTIONS.CHOOSE_OPERATOR:
-      if (state.currentOperand == null && state.previousOperand == null) {
-        return state;
+      if (state.currentOperand == 0 && state.previousOperand == null) {
+        return {
+          ...state,
+          operation: null,
+        };
       }
 
-      if (state.currentOperand == null) {
+      if (state.currentOperand == 0) {
         return {
           ...state,
           operation: payload?.operation,
@@ -47,7 +50,7 @@ export function reducer(state: StateType, { type, payload }: ActionType): any {
           ...state,
           operation: payload?.operation,
           previousOperand: state.currentOperand,
-          currentOperand: null,
+          currentOperand: 0,
         };
       }
 
@@ -55,7 +58,7 @@ export function reducer(state: StateType, { type, payload }: ActionType): any {
         ...state,
         previousOperand: evaluate(state),
         operation: payload?.operation,
-        currentOperand: null,
+        currentOperand: 0,
       };
 
     case ACTIONS.CHANGE_SIGN:

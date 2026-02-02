@@ -7,6 +7,6 @@ import Background from "./components/Background";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
-    <Background />
+    {/* <Background /> */}
   </React.StrictMode>
 );

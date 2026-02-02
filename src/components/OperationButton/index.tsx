@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { ACTIONS } from "../../helpers/constants";
 import { Button } from "../ui/button";
+import clsx from "clsx";
 
 type OperationButtonType = {
   operation: string;
@@ -10,12 +11,17 @@ type OperationButtonType = {
       operation: string;
     };
   }>;
+  className?: string; // Проп для передачи дополнительных классов
 };
 
-const OperationButton = ({ operation, dispatch }: OperationButtonType) => {
+const OperationButton = ({
+  operation,
+  dispatch,
+  className,
+}: OperationButtonType) => {
   return (
     <Button
-      // className="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 rounded-lg px-5 py-2.5 text-center me-2 mb-2 text-4xl font-semibold"
+      className={clsx("size-1/4 text-2xl w-full h-full", className)} // Объединение базового класса и переданных классов
       onClick={() =>
         dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operation } })
       }
@@ -27,7 +33,8 @@ const OperationButton = ({ operation, dispatch }: OperationButtonType) => {
 
 OperationButton.propTypes = {
   operation: PropTypes.string.isRequired,
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
+  className: PropTypes.string, // Описание нового пропа
 };
 
 export default OperationButton;

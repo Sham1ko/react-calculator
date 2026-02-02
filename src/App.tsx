@@ -9,16 +9,17 @@ function App() {
     initialState
   );
 
+  console.log("currentOperand", currentOperand);
+  console.log("previousOperand", previousOperand);
+  console.log("operation", operation);
   return (
-    <main className="container mx-auto ">
-      <section className="sm:mx-2 border-solid border-[#E5E7EB] border my-10 rounded-md backdrop-blur-sm">
-        <Display
-          currentOperand={currentOperand}
-          previousOperand={previousOperand}
-          operation={operation}
-        />
-        <Buttons dispatch={dispatch} />
-      </section>
+    <main className="lg:container mx-auto h-screen flex flex-col lg:border-solid lg:border-[#E5E7EB] lg:border lg:rounded-md lg:backdrop-blur-sm">
+      <Display
+        currentOperand={currentOperand}
+        previousOperand={previousOperand}
+        operation={operation}
+      />
+      <Buttons dispatch={dispatch} />
     </main>
   );
 }

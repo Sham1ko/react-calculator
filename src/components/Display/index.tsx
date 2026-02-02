@@ -19,7 +19,7 @@ type DisplayType = {
 
 function Display({ currentOperand, previousOperand, operation }: DisplayType) {
   return (
-    <div className="text-right flex flex-col m-10 rounded-md border border-[#CBD5E1] h-34 p-10 justify-around">
+    <div className="text-right flex flex-col mx-10 mt-10 rounded-md border border-[#CBD5E1] h-1/3 p-10 justify-center">
       <div className="text-8xl ">
         {" "}
         {formatOperand(previousOperand)}{" "}
