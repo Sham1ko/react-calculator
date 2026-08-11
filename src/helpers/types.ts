@@ -1,6 +1,6 @@
 export type StateType = {
-  currentOperand: number;
-  previousOperand: number;
+  currentOperand: string;
+  previousOperand: string | null;
   operation: string | null | undefined;
   overwrite?: boolean | undefined;
 };

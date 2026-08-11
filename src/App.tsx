@@ -9,9 +9,6 @@ function App() {
     initialState
   );
 
-  console.log("currentOperand", currentOperand);
-  console.log("previousOperand", previousOperand);
-  console.log("operation", operation);
   return (
     <main className="lg:container mx-auto h-screen flex flex-col lg:border-solid lg:border-[#E5E7EB] lg:border lg:rounded-md lg:backdrop-blur-sm">
       <Display

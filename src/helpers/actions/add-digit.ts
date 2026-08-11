@@ -11,7 +11,7 @@ export function addDigit(
   if (state.overwrite) {
     return {
       ...state,
-      currentOperand: payload?.digit,
+      currentOperand: payload?.digit ?? state.currentOperand,
       overwrite: false,
     };
   }

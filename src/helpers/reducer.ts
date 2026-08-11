@@ -17,7 +17,7 @@ export const initialState = {
 };
 
 type ActionType = {
-  type: string;
+  type: (typeof ACTIONS)[keyof typeof ACTIONS];
   payload:
     | {
         operation?: string | undefined;
@@ -26,19 +26,19 @@ type ActionType = {
     | undefined;
 };
 
-export function reducer(state: StateType, { type, payload }: ActionType): any {
+export function reducer(state: StateType, { type, payload }: ActionType): StateType {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
       return addDigit(state, payload);
     case ACTIONS.CHOOSE_OPERATOR:
-      if (state.currentOperand == 0 && state.previousOperand == null) {
+      if (state.currentOperand === "0" && state.previousOperand == null) {
         return {
           ...state,
           operation: null,
         };
       }
 
-      if (state.currentOperand == 0) {
+      if (state.currentOperand === "0") {
         return {
           ...state,
           operation: payload?.operation,
@@ -50,7 +50,7 @@ export function reducer(state: StateType, { type, payload }: ActionType): any {
           ...state,
           operation: payload?.operation,
           previousOperand: state.currentOperand,
-          currentOperand: 0,
+          currentOperand: "0",
         };
       }
 
@@ -58,7 +58,7 @@ export function reducer(state: StateType, { type, payload }: ActionType): any {
         ...state,
         previousOperand: evaluate(state),
         operation: payload?.operation,
-        currentOperand: 0,
+        currentOperand: "0",
       };
 
     case ACTIONS.CHANGE_SIGN:
@@ -69,5 +69,7 @@ export function reducer(state: StateType, { type, payload }: ActionType): any {
       return deleteDigit(state);
     case ACTIONS.EVALUATE:
       return calculateResult(state);
+    default:
+      return state;
   }
 }

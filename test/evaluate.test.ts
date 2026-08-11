@@ -54,4 +54,13 @@ describe("evaluate", () => {
     };
     expect(evaluate(state)).toBe("1");
   });
+
+  test("should return an error message when dividing by 0", () => {
+    const state = {
+      previousOperand: "5",
+      currentOperand: "0",
+      operation: "÷",
+    };
+    expect(evaluate(state)).toBe("Error: Division by zero");
+  });
 });

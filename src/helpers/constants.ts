@@ -5,4 +5,4 @@ export const ACTIONS = {
     DELETE_DIGIT: 'delete-digit',
     EVALUATE: 'evaluate',
     CHANGE_SIGN: 'change-sign',
-}
+} as const;
