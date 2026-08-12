@@ -1,3 +1,5 @@
+import { getDisplayFontSizeClass } from "../../helpers/display";
+
 const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: undefined,
 });
@@ -20,13 +22,19 @@ function Display({
   previousOperand = null,
   operation = null,
 }: DisplayType) {
+  const previousText = formatOperand(previousOperand) ?? "";
+  const currentText = formatOperand(currentOperand) ?? "";
+  const combinedLength =
+    previousText.length + (operation?.length ?? 0) + currentText.length;
+  const fontSizeClass = getDisplayFontSizeClass(combinedLength);
+
   return (
-    <div className="text-right flex flex-col mx-10 mt-10 rounded-md border border-input h-1/3 p-10 justify-center">
-      <div className="text-8xl ">
+    <div className="text-right flex flex-col mx-10 mt-10 rounded-md border border-input h-1/3 p-10 justify-center overflow-hidden">
+      <div className={`${fontSizeClass} truncate`}>
         {" "}
-        {formatOperand(previousOperand)}{" "}
+        {previousText}{" "}
         <span className="text-red-500">{operation}</span>{" "}
-        {formatOperand(currentOperand)}
+        {currentText}
       </div>
     </div>
   );
