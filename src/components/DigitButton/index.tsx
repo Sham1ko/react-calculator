@@ -19,6 +19,7 @@ const DigitButton = ({
   return (
     <Button
       variant={"outline"}
+      data-key={`digit-${digit}`}
       className={clsx(
         isZero
           ? "col-span-2  text-2xl w-full h-full"

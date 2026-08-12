@@ -71,3 +71,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.keyboard-active {
+  transform: scale(0.95);
+  filter: brightness(0.92);
+}

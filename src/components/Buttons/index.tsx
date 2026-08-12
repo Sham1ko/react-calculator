@@ -14,12 +14,14 @@ function Buttons({ dispatch }: ButtonsType) {
     <div className="flex-1 flex flex-col justify-between m-10 gap-y-2">
       <div className="grid grid-cols-4 gap-2 h-1/5">
         <Button
+          data-key="clear"
           onClick={() => dispatch({ type: ACTIONS.CLEAR, payload: undefined })}
           className="w-full h-full text-2xl"
         >
           AC
         </Button>
         <Button
+          data-key="change-sign"
           onClick={() =>
             dispatch({ type: ACTIONS.CHANGE_SIGN, payload: undefined })
           }
@@ -28,6 +30,7 @@ function Buttons({ dispatch }: ButtonsType) {
           ±
         </Button>
         <Button
+          data-key="delete"
           onClick={() =>
             dispatch({ type: ACTIONS.DELETE_DIGIT, payload: undefined })
           }
@@ -59,6 +62,7 @@ function Buttons({ dispatch }: ButtonsType) {
         <DigitButton digit={"0"} dispatch={dispatch} isZero />
         <DigitButton digit={"."} dispatch={dispatch} />
         <Button
+          data-key="evaluate"
           variant="destructive"
           onClick={() =>
             dispatch({ type: ACTIONS.EVALUATE, payload: undefined })

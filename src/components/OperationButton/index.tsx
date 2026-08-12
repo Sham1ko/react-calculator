@@ -17,6 +17,7 @@ const OperationButton = ({
 }: OperationButtonType) => {
   return (
     <Button
+      data-key={`op-${operation}`}
       className={clsx("size-1/4 text-2xl w-full h-full", className)} // Объединение базового класса и переданных классов
       onClick={() =>
         dispatch({ type: ACTIONS.CHOOSE_OPERATOR, payload: { operation } })
