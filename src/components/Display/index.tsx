@@ -1,5 +1,3 @@
-import "./index.css";
-
 const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: undefined,
 });
