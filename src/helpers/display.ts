@@ -1,8 +1,8 @@
-// Available text width inside the display card = card width - mx-10 (2*40px) - p-10 (2*40px).
-// Mobile: card is 100vw. Measured at a 375px-wide viewport -> ~215px available.
-// Desktop: card is capped at lg:max-w-md (448px), so this is constant regardless of window width -> ~288px available.
-const MOBILE_AVAILABLE_WIDTH_PX = 215;
-const DESKTOP_AVAILABLE_WIDTH_PX = 288;
+// Available text width inside the display card = card width - mx-6 (2*24px) - p-6 (2*24px).
+// Mobile: card is 100vw. Measured at a 375px-wide viewport -> ~278px available.
+// Desktop: card is capped at lg:max-w-md (448px), so this is constant regardless of window width -> ~349px available.
+const MOBILE_AVAILABLE_WIDTH_PX = 278;
+const DESKTOP_AVAILABLE_WIDTH_PX = 349;
 
 // Empirically measured average rendered width per character, in units of the font-size (px).
 // Includes a small safety margin over the raw measured ratio (~0.49) since digit widths vary slightly.

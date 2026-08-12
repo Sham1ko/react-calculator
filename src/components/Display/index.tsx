@@ -24,18 +24,19 @@ function Display({
 }: DisplayType) {
   const previousText = formatOperand(previousOperand) ?? "";
   const currentText = formatOperand(currentOperand) ?? "";
-  const combinedLength =
-    previousText.length + (operation?.length ?? 0) + currentText.length;
-  const fontSizeClass = getDisplayFontSizeClass(combinedLength);
+  const previousLineFontSize = getDisplayFontSizeClass(
+    previousText.length + (operation?.length ?? 0)
+  );
+  const currentLineFontSize = getDisplayFontSizeClass(currentText.length);
 
   return (
-    <div className="text-right flex flex-col mx-10 mt-10 rounded-md border border-input h-1/3 p-10 justify-center overflow-hidden">
-      <div className={`${fontSizeClass} truncate`}>
-        {" "}
-        {previousText}{" "}
-        <span className="text-red-500">{operation}</span>{" "}
-        {currentText}
-      </div>
+    <div className="text-right flex flex-col mx-6 mt-10 rounded-md border border-input h-1/3 p-6 justify-center overflow-hidden">
+      {(previousText || operation) && (
+        <div className={`${previousLineFontSize} truncate`}>
+          {previousText} <span className="text-red-500">{operation}</span>
+        </div>
+      )}
+      <div className={`${currentLineFontSize} truncate`}>{currentText}</div>
     </div>
   );
 }
