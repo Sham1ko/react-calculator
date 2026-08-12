@@ -16,7 +16,7 @@ export const initialState = {
   overwrite: true,
 };
 
-type ActionType = {
+export type ActionType = {
   type: (typeof ACTIONS)[keyof typeof ACTIONS];
   payload:
     | {

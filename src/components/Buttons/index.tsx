@@ -2,18 +2,11 @@ import PropTypes from "prop-types";
 import DigitButton from "../DigitButton";
 import OperationButton from "../OperationButton";
 import { ACTIONS } from "../../helpers/constants";
+import { ActionType } from "../../helpers/reducer";
 import { Button } from "../ui/button";
 
 type ButtonsType = {
-  dispatch: React.Dispatch<{
-    type: string;
-    payload:
-      | {
-          operation?: string | undefined;
-          digit?: string | undefined;
-        }
-      | undefined;
-  }>;
+  dispatch: React.Dispatch<ActionType>;
 };
 
 function Buttons({ dispatch }: ButtonsType) {

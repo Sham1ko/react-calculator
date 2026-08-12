@@ -1,15 +1,11 @@
 import { ACTIONS } from "../../helpers/constants";
+import { ActionType } from "../../helpers/reducer";
 import { Button } from "../ui/button";
 import clsx from "clsx"; // Это помогает аккуратно объединять классы
 
 type DigitButtonType = {
   digit: string;
-  dispatch: React.Dispatch<{
-    type: string;
-    payload: {
-      digit: string;
-    };
-  }>;
+  dispatch: React.Dispatch<ActionType>;
   isZero?: boolean;
   className?: string; // Проп для передачи дополнительных классов
 };

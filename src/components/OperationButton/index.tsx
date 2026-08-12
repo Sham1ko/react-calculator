@@ -1,16 +1,12 @@
 import PropTypes from "prop-types";
 import { ACTIONS } from "../../helpers/constants";
+import { ActionType } from "../../helpers/reducer";
 import { Button } from "../ui/button";
 import clsx from "clsx";
 
 type OperationButtonType = {
   operation: string;
-  dispatch: React.Dispatch<{
-    type: string;
-    payload: {
-      operation: string;
-    };
-  }>;
+  dispatch: React.Dispatch<ActionType>;
   className?: string; // Проп для передачи дополнительных классов
 };
 
