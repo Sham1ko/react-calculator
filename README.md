@@ -1,41 +1,79 @@
-# Simple Calculator (React TypeScript with Vite)
+# React Calculator
 
-This project is a simple calculator implemented using React, TypeScript, and Vite.
+A calculator built with React, TypeScript, and Vite. Supports mouse and keyboard input, and a light/dark theme that follows your system preference and remembers your choice.
 
-## Installation
+Live demo: [react-calculator-sham1ko.vercel.app](https://react-calculator-sham1ko.vercel.app/)
 
-To get started with this project, clone the repository and run:
+## Features
+
+- Basic arithmetic: addition, subtraction, multiplication, division
+- Sign toggle (±) and decimal point input
+- Division by zero is reported explicitly instead of showing `Infinity`
+- Full keyboard support (see below), including the numeric keypad
+- Light/dark theme toggle, persisted in `localStorage`, defaulting to your OS preference on first visit
+- Styled with Tailwind CSS and [shadcn/ui](https://ui.shadcn.com/)-style components
+
+## Keyboard shortcuts
+
+| Key(s) | Action |
+| --- | --- |
+| `0`-`9` | Enter a digit |
+| `.` or `,` | Decimal point |
+| `+` `-` `*` `/` | Operator |
+| `Enter` or `=` | Evaluate |
+| `Backspace` | Delete last digit |
+| `Escape` | Clear |
+
+The numeric keypad works the same way as the top-row keys when Num Lock is on. Sign toggle (±) is mouse/touch only.
+
+## Getting started
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-This will install all the necessary dependencies.
-
-## Development
-
-To run the project in development mode, execute:
+Start the dev server (Vite, with HMR):
 
 ```bash
 npm run dev
 ```
 
-This command will start a development server powered by Vite, allowing you to preview and test your calculator application with fast HMR (Hot Module Replacement).
+Run the test suite (Jest):
 
-## Build
+```bash
+npm test
+```
 
-When you're ready to build the project for production, use:
+Lint the project:
+
+```bash
+npm run lint
+```
+
+Build for production:
 
 ```bash
 npm run build
 ```
 
-This command will create an optimized production build of your application using Vite, resulting in a highly performant bundle in the `dist` directory.
+The optimized build is written to `dist/`. Preview it locally with:
 
-## Usage
+```bash
+npm run preview
+```
 
-After building the project, you can serve the optimized build using a static file server or deploy it to a hosting service of your choice.
+## Project structure
 
-## Demo
+```
+src/
+  components/     UI components (buttons, display, theme toggle)
+  contexts/       Theme context/provider
+  helpers/        Pure calculator logic: reducer, actions, keyboard mapping
+  hooks/          React hooks (keyboard input)
+  lib/            Small shared utilities
+test/             Jest unit tests for the pure logic in helpers/
+```
 
-Check out the live demo of this project [here](https://react-calculator-sham1ko.vercel.app/).
+The calculator's state is driven by a single `useReducer` in `src/helpers/reducer.ts`; each action (`add-digit`, `choose-operator`, `clear`, `delete-digit`, `evaluate`, `change-sign`) has its own file under `src/helpers/actions/`.
