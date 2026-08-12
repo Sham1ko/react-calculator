@@ -13,7 +13,7 @@ function App() {
   useKeyboardInput(dispatch);
 
   return (
-    <main className="lg:container mx-auto h-screen flex flex-col lg:border-solid lg:border-input lg:border lg:rounded-md lg:backdrop-blur-sm">
+    <main className="mx-auto h-screen flex flex-col lg:max-w-md lg:border-solid lg:border-input lg:border-x lg:backdrop-blur-sm">
       <ThemeButton />
       <Display
         currentOperand={currentOperand}
